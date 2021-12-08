@@ -14,7 +14,7 @@ const handleOnClick = (media) => {
 
 export const Player = ({ url }) => {
     return <div>
-        <Button onClick={() => { handleOnClick(store.getState().player.media); console.log('Media is: ', url) }} >
+        <Button onClick={() => { handleOnClick(url); console.log('Media is: ', url) }} >
             <RiPlayFill size={30} />
         </Button>
         <Button>
