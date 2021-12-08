@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { playMedia, pauseMedia, resumeMedia, stopMedia, stopCast, seek } = require('./functions');
+const { playMedia, pauseMedia, resumeMedia, stopMedia, stopCast, seek } = require('../functions/functions');
 
 router.post('/stop-cast', async (req, res) => {
     const client = req.app.get('client');

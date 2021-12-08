@@ -1,0 +1,91 @@
+.App {
+  text-align: center;
+}
+
+.App::after {
+  content: "";
+  background: url('./images/background.jpg');
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;   
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+Button {
+  height: 50px;
+  width: 10%;
+}
+
+label {
+  display: block;
+  font: 1rem 'Fira Sans', sans-serif;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input {
+  margin-bottom: 20px;
+}
+
+.section1 {
+position: absolute;
+top: 50px; left: 40px;
+}
+
+.section2 {
+  position: relative;
+  top: 5px; 
+  }
+
+.uploaderDiv {
+  background-color: #c7e7ce;
+  opacity: 0.9;
+  height: 250px;
+  width: 100%;
+}
+
+body {
+  text-align: center;
+}
+
+form {
+  display: inline-block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
