@@ -4,14 +4,14 @@
 
 .App::after {
   content: "";
-  background: url('./images/background.jpg');
+  background: url("./images/background.jpg");
   opacity: 0.5;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: absolute;
-  z-index: -1;   
+  z-index: -1;
 }
 
 .App-logo {
@@ -22,11 +22,12 @@
 Button {
   height: 50px;
   width: 10%;
+  display: inline-block;
 }
 
 label {
   display: block;
-  font: 1rem 'Fira Sans', sans-serif;
+  font: 1rem "Fira Sans", sans-serif;
   font-weight: bold;
   margin-bottom: 10px;
 }
@@ -36,19 +37,38 @@ input {
 }
 
 .section1 {
-position: absolute;
-top: 50px; left: 40px;
+  position: absolute;
+  top: 50px;
+  left: 40px;
 }
 
 .section2 {
   position: relative;
-  top: 5px; 
-  }
+  top: 5px;
+}
+
+.section3 {
+  position: absolute;
+  top: 50px;
+  right: 100px;
+}
+
+.section3 Button {
+  height: 50px;
+  width: 10%;
+}
+
+.section3 label {
+  font: 1rem "Fira Sans", sans-serif;
+  font-weight: bold;
+  display: inline-block;
+  margin: 10%;
+}
 
 .uploaderDiv {
   background-color: #c7e7ce;
   opacity: 0.9;
-  height: 250px;
+  height: 300px;
   width: 100%;
 }
 
@@ -79,13 +99,4 @@ form {
 
 .App-link {
   color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
