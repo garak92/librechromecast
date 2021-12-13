@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { playMedia, pauseMedia, resumeMedia, stopMedia, stopCast, seek } = require('../functions/functions');
+const localIpV4Address = require("local-ipv4-address");
 
 router.post('/stop-cast', async (req, res) => {
     const client = req.app.get('client');
@@ -87,6 +88,17 @@ router.get('/client-info', async (req, res) => {
         return res.status(400).json({ msg: "No client started!" });
     }
     return res.status(200).json({ client });
+})
+
+router.get('/local-ip', async (req, res) => {
+    try {
+        const ip = await localIpV4Address().then(function (ipAddress) {
+            return ipAddress;
+        });
+        return res.status(200).json({ local_ip: ip });
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
 })
 
 module.exports = router;

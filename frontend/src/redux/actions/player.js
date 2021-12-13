@@ -6,7 +6,9 @@ import {
     RESUME_MEDIA,
     STOP_CAST,
     SEEK_SECONDS,
-    GET_DEVICE
+    GET_DEVICE,
+    GET_IP,
+    GET_IP_SUCCESS
 } from '../constants/player';
 
 export const getMediaAction = (payload) => {
@@ -56,6 +58,19 @@ export const resumeMediaAction = () => {
 export const getDeviceAction = (payload) => {
     return {
         type: GET_DEVICE,
+        payload: payload
+    }
+}
+
+export const getIPAction = () => {
+    return {
+        type: GET_IP,
+    }
+}
+
+export const getIPSuccessAction = (payload) => {
+    return {
+        type: GET_IP_SUCCESS,
         payload: payload
     }
 }

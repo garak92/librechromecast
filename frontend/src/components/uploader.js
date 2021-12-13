@@ -1,5 +1,5 @@
-import store from '../redux/store';
-import { getMediaAction } from '../redux/actions/player';
+import { useEffect } from 'react';
+import { getMediaAction, getIPAction } from '../redux/actions/player';
 const Player = require('./player');
 const { PropTypes } = require('prop-types');
 const { connect } = require('react-redux');
@@ -8,16 +8,23 @@ const onChangeHandler = (e) => {
     return e.target.value;
 }
 
-export const Uploader = ({ getMediaAction }) => {
-    return <form>
+const uploadFileHandler = (e, ip) => {
+    const file = 'http://' + ip + ':5000' + e.target.files[0].path;
+    console.log('My file is:', e.target.files[0].path);
+    return file;
+};
+
+export const Uploader = ({ getMediaAction, getIPAction, ip }) => {
+    useEffect(() => getIPAction(), [ip]); // Necessary for the chromcast to be able to see your local files
+    return <form encType="multipart/form-data">
         <section className='section2'>
-            <label htmlFor="files" >Select a local video file </label>
-            <input id="files" type="file" />
+            <label htmlFor="localfiles" >Select a local video file </label>
+            <input id="localfiles" type="file" accept="video/*" onChange={(e) => { getMediaAction(uploadFileHandler(e, ip)) }} />
         </section>
         <section className='section1'>
             <h2>Other options</h2>
-            <label htmlFor="files">Add a subtitle file </label>
-            <input id="files" type="file" />
+            <label htmlFor="subs">Add a subtitle file </label>
+            <input id="subs" type="file" />
             <label htmlFor="files">Input a video url </label>
             <input id="files" type="url" onChange={(e) => { getMediaAction(onChangeHandler(e)) }} />
         </section>
@@ -25,14 +32,20 @@ export const Uploader = ({ getMediaAction }) => {
 }
 
 Uploader.propTypes = {
-    getMediaAction: PropTypes.func.isRequired
+    getMediaAction: PropTypes.func.isRequired,
+    getIPAction: PropTypes.func.isRequired,
+    ip: PropTypes.array.isRequired
 
 }
+const mapStateToProps = (state) => ({
+    ip: state.player.ip
+});
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getMediaAction: (payload) => dispatch(getMediaAction(payload)),
+        getIPAction: () => dispatch(getIPAction()),
     }
 }
 
-export default connect(null, mapDispatchToProps)(Uploader);
+export default connect(mapStateToProps, mapDispatchToProps)(Uploader);

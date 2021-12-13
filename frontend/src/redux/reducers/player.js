@@ -6,14 +6,17 @@ import {
     STOP_MEDIA,
     STOP_CAST,
     SEEK_SECONDS,
-    GET_DEVICE
+    GET_DEVICE,
+    GET_IP,
+    GET_IP_SUCCESS
 } from '../constants/player';
 
 const initialState = {
     media: [],
     playing: false,
     device: [],
-    casting: false
+    casting: false,
+    ip: []
 }
 
 export default function (state = initialState, action) {
@@ -60,6 +63,15 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 device: payload
+            }
+        case GET_IP:
+            return {
+                ...state
+            }
+        case GET_IP_SUCCESS:
+            return {
+                ...state,
+                ip: payload
             }
         default:
             return state

@@ -95,3 +95,18 @@ export async function getDevice() {
         console.error(error.message);
     }
 }
+
+export async function getIP() {
+    const config = {
+        method: "get",
+        url: "http://localhost:5000/api/local-ip",
+    };
+    try {
+        let res = await axios(config);
+        let ip = res.data.local_ip
+        console.log('Local ip', ip);
+        return ip
+    } catch (error) {
+        console.error(error.message);
+    }
+}

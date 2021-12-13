@@ -2,11 +2,16 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "main": "public/electron.js",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "concurrently": "^6.4.0",
+    "dotenv": "^10.0.0",
+    "electron-devtools-installer": "^3.2.0",
+    "electron-is-dev": "^2.0.0",
+    "http-server": "^14.0.0",
+    "local-ipv4-address": "^0.0.2",
     "prettier": "^2.5.1",
     "react": "^16.14.0",
     "react-dom": "^17.0.2",
@@ -23,7 +28,13 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron:start": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron . \"",
+    "electron-pack": "electron-builder -c.extraMetadata.main=build/electron.js",
+    "server": "node ../app.js",
+    "client": "cross-env BROWSER=none npm start",
+    "electron": "wait-on http://localhost:3000 && electron .",
+    "dev": "concurrently \"npm run server\" \"npm run client\"\" npm run electron\""
   },
   "eslintConfig": {
     "extends": [
@@ -42,5 +53,13 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^6.4.0",
+    "cross-env": "^7.0.3",
+    "electron": "^16.0.4",
+    "electron-builder": "^22.14.5",
+    "electron-redux-devtools": "^0.3.4",
+    "wait-on": "^6.0.0"
   }
 }
