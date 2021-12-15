@@ -9,7 +9,8 @@ import {
     GET_DEVICE,
     GET_IP,
     GET_IP_SUCCESS,
-    GET_SUBS
+    GET_SUBS,
+    SET_VOLUME
 } from '../constants/player';
 
 export const getMediaAction = (payload) => {
@@ -22,6 +23,13 @@ export const getMediaAction = (payload) => {
 export const seekSecondsAction = (payload) => {
     return {
         type: SEEK_SECONDS,
+        payload: payload
+    }
+}
+
+export const setVolumeAction = (payload) => {
+    return {
+        type: SET_VOLUME,
         payload: payload
     }
 }

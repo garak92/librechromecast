@@ -8,6 +8,7 @@ import {
     stopMediaAction,
     getDeviceAction
 } from '../redux/actions/player';
+import Volume from './volume';
 const { button } = require('react-player-controls')
 const { RiPlayFill, RiPauseCircleFill, RiStopCircleFill, RiSkipBackFill, RiSkipForwardFill, RiCastLine, RiCastFill } = require('react-icons/ri');
 const { PropTypes } = require('prop-types');
@@ -107,6 +108,7 @@ export const Player = ({ url, playing, device, casting, subs, playMediaAction, p
             <button title="Disconnect from your chromecast device" onClick={() => { handleOnClickStopCast(); stopCastAction(); }}>
                 <RiCastLine size={30} />
             </button>
+            <Volume></Volume>
         </div>
     </div>
 
