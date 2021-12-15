@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { playMedia, pauseMedia, resumeMedia, stopMedia, stopCast, seek } = require('../functions/functions');
+const { playMedia, pauseMedia, resumeMedia, stopMedia, stopCast, seek, setVolume, setTime, getTime } = require('../functions/functions');
 const localIpV4Address = require("local-ipv4-address");
 
 router.post('/stop-cast', async (req, res) => {
@@ -73,6 +73,34 @@ router.post('/seek-seconds', async (req, res) => {
     return res.status(200).json({ msg: "Seeking!" });
 })
 
+router.post('/set-volume', async (req, res) => {
+    const { level } = req.body;
+    const client = req.app.get('client');
+    const device = client.devices[0];
+    if (!device) {
+        return res.status(400).json({ msg: "No device found!" });
+    }
+    if (!level) {
+        return res.status(400).json({ msg: "Volume level unspecified!" });
+    }
+    setVolume(device, level);
+    return res.status(200).json({ msg: "Changing volume!" });
+})
+
+router.post('/set-time', async (req, res) => {
+    const { seconds } = req.body;
+    const client = req.app.get('client');
+    const device = client.devices[0];
+    if (!device) {
+        return res.status(400).json({ msg: "No device found!" });
+    }
+    if (!seconds) {
+        return res.status(400).json({ msg: "Second unspecified!" });
+    }
+    setTime(device, seconds);
+    return res.status(200).json({ msg: "Going into specified time!" });
+})
+
 router.get('/device-info', async (req, res) => {
     const client = req.app.get('client');
     const device = client.devices[0];
@@ -99,6 +127,16 @@ router.get('/local-ip', async (req, res) => {
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
+})
+
+router.get('/current-time', async (req, res) => {
+    const client = req.app.get('client');
+    const device = client.devices[0];
+    if (!device) {
+        return res.status(400).json({ msg: "No device found!" });
+    }
+    const currentTime = getTime(device);
+    return res.status(200).json({ currentTime: currentTime });
 })
 
 module.exports = router;

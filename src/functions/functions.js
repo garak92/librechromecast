@@ -23,10 +23,18 @@ function stopMedia(device) {
 }
 
 function seek(device, seconds) {
-    device.seek(seconds, () => console.log(`Going {seconds} seconds`));
+    device.seek(seconds, () => console.log(`Going ${seconds} seconds`));
+}
+
+function setVolume(device, level) {
+    device.setVolume(level, () => console.log(`Volume set to ${level}`));
+}
+
+function setTime(device, seconds) {
+    device.setTime(seconds, () => console.log(`Going ${seconds} seconds`));
 }
 
 module.exports = {
     stopMedia, resumeMedia, pauseMedia,
-    playMedia, stopCast, seek
+    playMedia, stopCast, seek, setVolume, setTime
 };
