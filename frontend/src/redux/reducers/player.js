@@ -8,7 +8,8 @@ import {
     SEEK_SECONDS,
     GET_DEVICE,
     GET_IP,
-    GET_IP_SUCCESS
+    GET_IP_SUCCESS,
+    GET_SUBS
 } from '../constants/player';
 
 const initialState = {
@@ -16,7 +17,8 @@ const initialState = {
     playing: false,
     device: [],
     casting: false,
-    ip: []
+    ip: [],
+    subs: []
 }
 
 export default function (state = initialState, action) {
@@ -72,6 +74,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 ip: payload
+            }
+        case GET_SUBS:
+            return {
+                ...state,
+                subs: payload
             }
         default:
             return state

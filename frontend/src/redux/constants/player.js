@@ -8,3 +8,4 @@ export const SEEK_SECONDS = 'SEEK_SECONDS ';
 export const GET_DEVICE = 'GET_DEVICE';
 export const GET_IP = 'GET_IP';
 export const GET_IP_SUCCESS = 'GET_IP_SUCCESS';
+export const GET_SUBS = 'GET_SUBS';

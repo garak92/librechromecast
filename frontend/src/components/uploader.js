@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { getMediaAction, getIPAction } from '../redux/actions/player';
+import { getMediaAction, getIPAction, getSubsAction } from '../redux/actions/player';
 const Player = require('./player');
 const { PropTypes } = require('prop-types');
 const { connect } = require('react-redux');
@@ -14,7 +14,7 @@ const uploadFileHandler = (e, ip) => {
     return file;
 };
 
-export const Uploader = ({ getMediaAction, getIPAction, ip }) => {
+export const Uploader = ({ getMediaAction, getIPAction, getSubsAction, ip }) => {
     useEffect(() => getIPAction(), [ip]); // Necessary for the chromcast to be able to see your local files
     return <form encType="multipart/form-data">
         <section className='section2'>
@@ -24,7 +24,7 @@ export const Uploader = ({ getMediaAction, getIPAction, ip }) => {
         <section className='section1'>
             <h2>Other options</h2>
             <label htmlFor="subs">Add a subtitle file </label>
-            <input id="subs" type="file" />
+            <input id="subs" type="file" onChange={(e) => { getSubsAction(uploadFileHandler(e, ip)) }} />
             <label htmlFor="files">Input a video url </label>
             <input id="files" type="url" onChange={(e) => { getMediaAction(onChangeHandler(e)) }} />
         </section>
@@ -45,6 +45,7 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getMediaAction: (payload) => dispatch(getMediaAction(payload)),
         getIPAction: () => dispatch(getIPAction()),
+        getSubsAction: (payload) => dispatch(getSubsAction(payload))
     }
 }
 

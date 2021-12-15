@@ -26,8 +26,32 @@ const seconds = 5;
 
 // Event handlers
 
-const handleOnClickPlay = (media) => {
-    playMedia(media);
+const handleOnClickPlay = (media, subs) => {
+    const mediaObject = {
+        url: media,
+        subtitles: [
+            {
+                language: '',
+                url: subs,
+                name: '',
+            }
+        ],
+        cover: {
+            title: 'Playing your media...',
+            url: ''
+        },
+        subtitles_style: {
+            backgroundColor: '#FFFFFF00',
+            foregroundColor: '#FFFFFFFF',
+            edgeType: 'OUTLINE',
+            edgeColor: '#000000FF',
+            fontScale: 1.2,
+            fontStyle: 'BOLD',
+            fontFamily: 'Droid Sans',
+            fontGenericFamily: 'SANS_SERIF',
+        }
+    }
+    playMedia(mediaObject);
 }
 
 const handleOnClickPause = () => {
@@ -54,10 +78,11 @@ const handleOnClickResume = () => {
     resumeMedia();
 }
 
-export const Player = ({ url, playing, device, casting, playMediaAction, pauseMediaAction, resumeMediaAction, stopMediaAction, stopCastAction, getDevice }) => {
+export const Player = ({ url, playing, device, casting, subs, playMediaAction, pauseMediaAction, resumeMediaAction, stopMediaAction, stopCastAction, getDevice }) => {
     return <div>
         {casting ? <h3>Casting on {device}</h3> : null}
         {<h3>Media is {url}</h3>}
+        {<h3>Subs are {subs}</h3>}
         {casting ?
             playing ? <button title="Pause current media" onClick={() => { handleOnClickPause(); pauseMediaAction(); }}>
                 <RiPauseCircleFill size={30} />
@@ -75,7 +100,7 @@ export const Player = ({ url, playing, device, casting, playMediaAction, pauseMe
         </button>
         <div className='section3'>
             <label>Start casting</label>
-            <button title="Start casting selected media, click here every time you change media" onClick={() => { handleOnClickPlay(url); playMediaAction(); getDevice(); }} >
+            <button title="Start casting selected media, click here every time you change media" onClick={() => { handleOnClickPlay(url, subs); playMediaAction(); getDevice(); }} >
                 <RiCastFill size={30} />
             </button>
             <label>Stop casting</label>
@@ -98,7 +123,8 @@ const mapStateToProps = (state) => ({
     url: state.player.media,
     playing: state.player.playing,
     casting: state.player.casting,
-    device: state.player.device
+    device: state.player.device,
+    subs: state.player.subs
 });
 
 const mapDispatchToProps = (dispatch) => {

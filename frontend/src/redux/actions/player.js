@@ -8,7 +8,8 @@ import {
     SEEK_SECONDS,
     GET_DEVICE,
     GET_IP,
-    GET_IP_SUCCESS
+    GET_IP_SUCCESS,
+    GET_SUBS
 } from '../constants/player';
 
 export const getMediaAction = (payload) => {
@@ -71,6 +72,13 @@ export const getIPAction = () => {
 export const getIPSuccessAction = (payload) => {
     return {
         type: GET_IP_SUCCESS,
+        payload: payload
+    }
+}
+
+export const getSubsAction = (payload) => {
+    return {
+        type: GET_SUBS,
         payload: payload
     }
 }
