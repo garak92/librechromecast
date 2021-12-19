@@ -55,7 +55,7 @@ input {
 
 .section3 Button {
   height: 50px;
-  width: 10%;
+  width: 20%;
 }
 
 .section3 label {
@@ -68,7 +68,7 @@ input {
 .uploaderDiv {
   background-color: #c7e7ce;
   opacity: 0.9;
-  height: 300px;
+  height: 400px;
   width: 100%;
 }
 

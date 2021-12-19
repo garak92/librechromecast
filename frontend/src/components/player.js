@@ -101,8 +101,6 @@ const handleOnClickResume = () => {
 export const Player = ({ url, playing, device, casting, subs, playMediaAction, pauseMediaAction, resumeMediaAction, stopMediaAction, stopCastAction, getDevice }) => {
     return <div>
         {casting ? <h3>Casting on {device}</h3> : null}
-        {<h3>Media is {url}</h3>}
-        {<h3>Subs are {subs}</h3>}
         {casting ?
             playing ? <button title="Pause current media" onClick={() => { handleOnClickPause(); pauseMediaAction(); }}>
                 <RiPauseCircleFill size={30} />

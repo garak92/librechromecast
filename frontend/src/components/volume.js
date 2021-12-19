@@ -8,13 +8,19 @@ import { setVolumeAction } from '../redux/actions/player';
 import { connect } from 'react-redux';
 
 const ContinuousSlider = ({ setVolumeAction, playing }) => {
-    const [value, setValue] = useState(0.3);
+    const [value, setValue] = useState(0.50);
 
     const handleChange = (e, volume) => {
         if (!playing) {
             return;
         }
-        const volumeNormalized = volume / 100;
+        const volumeNormalized = () => {
+            if (volume == 0) {
+                return 0;
+            } else {
+                return volume / 100;
+            }
+        }
         setValue(volumeNormalized);
         console.log(value)
 
@@ -22,7 +28,7 @@ const ContinuousSlider = ({ setVolumeAction, playing }) => {
 
     const handleOnChangeComitted = (e, value, playing) => {
         console.log('playing?', playing)
-        if (!playing || value == null) {
+        if (!playing) {
             return;
         } else {
             setVolumeAction(value);
@@ -37,7 +43,6 @@ const ContinuousSlider = ({ setVolumeAction, playing }) => {
                     size="small"
                     aria-label="Small"
                     valueLabelDisplay="auto"
-                    defaultValue={0.3}
                     onChange={handleChange}
                     onChangeCommitted={(e) => handleOnChangeComitted(e, value, playing)}
                 />

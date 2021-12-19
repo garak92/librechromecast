@@ -3,7 +3,6 @@ import Player from './components/player';
 import Uploader from './components/uploader';
 import { Provider } from 'react-redux';
 import store from './redux/store';
-import Volume from './components/volume';
 
 const App = () => (
   <Provider store={store}>
