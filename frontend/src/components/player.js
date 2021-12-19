@@ -28,7 +28,9 @@ const seconds = 5;
 // Event handlers
 
 const handleOnClickPlay = (media, subs) => {
-    console.log('Subs are', subs);
+    if (!media) {
+        return;
+    }
     if (subs.length == 0) {
         return playMedia(media);
     } else {
@@ -64,19 +66,31 @@ const handleOnClickPause = () => {
     pauseMedia();
 }
 
-const handleOnClickStop = () => {
+const handleOnClickStop = (casting) => {
+    if (casting) {
+        return;
+    }
     stopMedia();
 }
 
-const handleOnClickStopCast = () => {
+const handleOnClickStopCast = (casting) => {
+    if (casting) {
+        return;
+    }
     stopCast();
 }
 
-const handleOnClickSeekForward = (seconds) => {
+const handleOnClickSeekForward = (seconds, playing) => {
+    if (playing) {
+        return;
+    }
     seekSeconds(seconds);
 }
 
-const handleOnClickSeekBackward = (seconds) => {
+const handleOnClickSeekBackward = (seconds, playing) => {
+    if (playing) {
+        return;
+    }
     seekSeconds(seconds * -1);
 }
 
@@ -96,12 +110,12 @@ export const Player = ({ url, playing, device, casting, subs, playMediaAction, p
                 <RiPlayFill size={30} />
             </button>
             : null}
-        <button title="Stop casting current media" onClick={() => { handleOnClickStop(); stopMediaAction(); }}>
+        <button title="Stop casting current media" onClick={() => { handleOnClickStop(casting); stopMediaAction(); }}>
             <RiStopCircleFill size={30} />
         </button>
-        <button title="Skip 5 seconds before" onClick={() => { handleOnClickSeekBackward(seconds); }}>
+        <button title="Skip 5 seconds before" onClick={() => { handleOnClickSeekBackward(seconds, playing); }}>
             <RiSkipBackFill size={30} />
-        </button ><button title="Skip 5 seconds forward" onClick={() => { handleOnClickSeekForward(seconds); }}>
+        </button ><button title="Skip 5 seconds forward" onClick={() => { handleOnClickSeekForward(seconds, playing); }}>
             <RiSkipForwardFill size={30} />
         </button>
         <div className='section3'>
@@ -110,7 +124,7 @@ export const Player = ({ url, playing, device, casting, subs, playMediaAction, p
                 <RiCastFill size={30} />
             </button>
             <label>Stop casting</label>
-            <button title="Disconnect from your chromecast device" onClick={() => { handleOnClickStopCast(); stopCastAction(); }}>
+            <button title="Disconnect from your chromecast device" onClick={() => { handleOnClickStopCast(casting); stopCastAction(); }}>
                 <RiCastLine size={30} />
             </button>
             <Volume></Volume>

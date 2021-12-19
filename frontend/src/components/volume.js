@@ -7,14 +7,26 @@ import VolumeUp from '@mui/icons-material/VolumeUp';
 import { setVolumeAction } from '../redux/actions/player';
 import { connect } from 'react-redux';
 
-const ContinuousSlider = ({ setVolumeAction }) => {
+const ContinuousSlider = ({ setVolumeAction, playing }) => {
     const [value, setValue] = useState(0.3);
 
     const handleChange = (e, volume) => {
+        if (!playing) {
+            return;
+        }
         const volumeNormalized = volume / 100;
         setValue(volumeNormalized);
         console.log(value)
 
+    }
+
+    const handleOnChangeComitted = (e, value, playing) => {
+        console.log('playing?', playing)
+        if (!playing || value == null) {
+            return;
+        } else {
+            setVolumeAction(value);
+        }
     }
 
     return (
@@ -27,7 +39,7 @@ const ContinuousSlider = ({ setVolumeAction }) => {
                     valueLabelDisplay="auto"
                     defaultValue={0.3}
                     onChange={handleChange}
-                    onChangeCommitted={(e) => setVolumeAction(value)}
+                    onChangeCommitted={(e) => handleOnChangeComitted(e, value, playing)}
                 />
                 <VolumeUp />
             </Stack>
@@ -35,6 +47,9 @@ const ContinuousSlider = ({ setVolumeAction }) => {
     );
 }
 
+const mapStateToProps = (state) => ({
+    playing: state.player.playing
+});
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -42,4 +57,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(ContinuousSlider);
+export default connect(mapStateToProps, mapDispatchToProps)(ContinuousSlider);
