@@ -28,31 +28,36 @@ const seconds = 5;
 // Event handlers
 
 const handleOnClickPlay = (media, subs) => {
-    const mediaObject = {
-        url: media,
-        subtitles: [
-            {
-                language: '',
-                url: subs,
-                name: '',
+    console.log('Subs are', subs);
+    if (subs.length == 0) {
+        return playMedia(media);
+    } else {
+        const mediaObject = {
+            url: media,
+            subtitles: [
+                {
+                    language: '',
+                    url: subs,
+                    name: '',
+                }
+            ],
+            cover: {
+                title: 'Playing your media...',
+                url: ''
+            },
+            subtitles_style: {
+                backgroundColor: '#FFFFFF00',
+                foregroundColor: '#FFFFFFFF',
+                edgeType: 'OUTLINE',
+                edgeColor: '#000000FF',
+                fontScale: 1.2,
+                fontStyle: 'BOLD',
+                fontFamily: 'Droid Sans',
+                fontGenericFamily: 'SANS_SERIF',
             }
-        ],
-        cover: {
-            title: 'Playing your media...',
-            url: ''
-        },
-        subtitles_style: {
-            backgroundColor: '#FFFFFF00',
-            foregroundColor: '#FFFFFFFF',
-            edgeType: 'OUTLINE',
-            edgeColor: '#000000FF',
-            fontScale: 1.2,
-            fontStyle: 'BOLD',
-            fontFamily: 'Droid Sans',
-            fontGenericFamily: 'SANS_SERIF',
         }
+        return playMedia(mediaObject);
     }
-    playMedia(mediaObject);
 }
 
 const handleOnClickPause = () => {

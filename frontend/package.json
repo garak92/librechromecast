@@ -36,7 +36,7 @@
     "electron:start": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron . \"",
     "electron-pack": "electron-builder -c.extraMetadata.main=build/electron.js",
     "server": "node ../app.js",
-    "client": "cross-env BROWSER=none npm start",
+    "client": "BROWSER=none npm start",
     "electron": "wait-on http://localhost:3000 && electron .",
     "dev": "concurrently \"npm run server\" \"npm run client\"\" npm run electron\""
   },
