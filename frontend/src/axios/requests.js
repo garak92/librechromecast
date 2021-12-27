@@ -68,6 +68,20 @@ export async function seekSeconds(payload) {
     }
 }
 
+export async function goTo(payload) {
+    const config = {
+        method: "post",
+        url: "http://localhost:5000/api/go-to",
+        data: { seconds: payload },
+    };
+    try {
+        let res = await axios(config);
+        console.log(res.status);
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
 export async function setVolume(payload) {
     const config = {
         method: "post",

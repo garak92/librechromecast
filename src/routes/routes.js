@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { playMedia, pauseMedia, resumeMedia, stopMedia, stopCast, seek, setVolume, setTime, getTime } = require('../functions/functions');
+const { playMedia, pauseMedia, resumeMedia, stopMedia, stopCast, seek, setVolume, setTime, goTo } = require('../functions/functions');
 const localIpV4Address = require("local-ipv4-address");
 
 router.post('/stop-cast', async (req, res) => {
@@ -75,6 +75,20 @@ router.post('/seek-seconds', async (req, res) => {
     }
     seek(device, seconds);
     return res.status(200).json({ msg: "Seeking!" });
+})
+
+router.post('/go-to', async (req, res) => {
+    const { seconds } = req.body;
+    const client = req.app.get('client');
+    const device = client.devices[0];
+    if (!device) {
+        return res.status(400).json({ msg: "No device found!" });
+    }
+    if (!seconds) {
+        return res.status(400).json({ msg: "Time unspecified!" });
+    }
+    goTo(device, seconds);
+    return res.status(200).json({ msg: "Going there!" });
 })
 
 router.post('/set-volume', async (req, res) => {

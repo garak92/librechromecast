@@ -27,6 +27,14 @@ export const seekSecondsAction = (payload) => {
     }
 }
 
+export const goToAction = (payload) => {
+    return {
+        type: SEEK_SECONDS,
+        payload: payload
+    }
+}
+
+
 export const setVolumeAction = (payload) => {
     return {
         type: SET_VOLUME,

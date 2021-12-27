@@ -10,3 +10,4 @@ export const GET_IP = 'GET_IP';
 export const GET_IP_SUCCESS = 'GET_IP_SUCCESS';
 export const GET_SUBS = 'GET_SUBS';
 export const SET_VOLUME = 'SET_VOLUME';
+export const GO_TO = 'GO_TO';

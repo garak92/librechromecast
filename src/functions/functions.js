@@ -30,11 +30,11 @@ function setVolume(device, level) {
     device.setVolume(level, () => console.log(`Volume set to ${level}`));
 }
 
-function setTime(device, seconds) {
-    device.setTime(seconds, () => console.log(`Going ${seconds} seconds`));
+function goTo(device, seconds) {
+    device.seekTo(seconds, () => console.log(`Going to ${seconds} seconds`));
 }
 
 module.exports = {
     stopMedia, resumeMedia, pauseMedia,
-    playMedia, stopCast, seek, setVolume, setTime
+    playMedia, stopCast, seek, setVolume, goTo
 };

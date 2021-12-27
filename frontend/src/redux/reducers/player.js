@@ -9,7 +9,8 @@ import {
     GET_DEVICE,
     GET_IP,
     GET_IP_SUCCESS,
-    GET_SUBS
+    GET_SUBS,
+    GO_TO
 } from '../constants/player';
 
 const initialState = {
@@ -76,6 +77,11 @@ export default function (state = initialState, action) {
                 ip: payload
             }
         case GET_SUBS:
+            return {
+                ...state,
+                subs: payload
+            }
+        case GO_TO:
             return {
                 ...state,
                 subs: payload

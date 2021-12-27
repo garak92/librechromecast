@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import moment from 'moment';
+import { useState } from 'react';
 import {
     playMediaAction,
     seekSecondsAction,
@@ -6,7 +7,8 @@ import {
     pauseMediaAction,
     stopCastAction,
     stopMediaAction,
-    getDeviceAction
+    getDeviceAction,
+    goToAction
 } from '../redux/actions/player';
 import Volume from './volume';
 const { button } = require('react-player-controls')
@@ -19,7 +21,8 @@ const { playMedia,
     stopMedia,
     stopCast,
     getDevice,
-    seekSeconds
+    seekSeconds,
+    goTo
 } = require('../axios/requests');
 
 // How many seconds will the seek buttons move
@@ -98,7 +101,13 @@ const handleOnClickResume = () => {
     resumeMedia();
 }
 
+const handleOnClickGoTo = (seconds) => {
+    const secondsFormatted = moment.duration(seconds).asSeconds();
+    goTo(secondsFormatted);
+}
+
 export const Player = ({ url, playing, device, casting, subs, playMediaAction, pauseMediaAction, resumeMediaAction, stopMediaAction, stopCastAction, getDevice }) => {
+    const [timeValue, setTime] = useState('00:00:00');
     return <div>
         {casting ? <h3>Casting on {device}</h3> : null}
         {casting ?
@@ -126,6 +135,8 @@ export const Player = ({ url, playing, device, casting, subs, playMediaAction, p
                 <RiCastLine size={30} />
             </button>
             <Volume></Volume>
+            <input type='time' onChange={(e) => { setTime(e.target.value); console.log('The time is', timeValue) }}></input>
+            <button onClick={(e) => handleOnClickGoTo(timeValue)}>GO</button>
         </div>
     </div>
 
@@ -154,7 +165,8 @@ const mapDispatchToProps = (dispatch) => {
         stopMediaAction: () => dispatch(stopMediaAction()),
         stopCastAction: () => dispatch(stopCastAction()),
         getDeviceAction: () => dispatch(getDeviceAction()),
-        getDevice: () => getDevice()
+        getDevice: () => getDevice(),
+        goTo: () => goToAction()
     }
 }
 
