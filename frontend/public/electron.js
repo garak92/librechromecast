@@ -2,6 +2,7 @@ const electron = require('electron');
 const { app, BrowserWindow } = electron;
 const path = require('path');
 const isDev = require('electron-is-dev');
+const server = require('../../app');
 
 let mainWindow = null;
 app.on('ready', createWindow);

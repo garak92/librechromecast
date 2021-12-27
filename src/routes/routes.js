@@ -19,7 +19,11 @@ router.post('/play-media', async (req, res) => {
     if (!mediaUrl) {
         return res.status(400).json({ msg: "Please, select a media to cast" });
     }
+
     const device = client.devices[0];
+    if (!device) {
+        return res.status(400).json({ msg: "No device found" });
+    }
     const deviceName = device.name;
     if (!deviceName.includes('googlecast')) {
         return res.status(400).json({ msg: "A device was found, but it is not a chromecast!" })
