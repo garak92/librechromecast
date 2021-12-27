@@ -11,6 +11,7 @@ import {
     goToAction
 } from '../redux/actions/player';
 import Volume from './volume';
+import Alert from 'simple-react-alert';
 const { button } = require('react-player-controls')
 const { RiPlayFill, RiPauseCircleFill, RiStopCircleFill, RiSkipBackFill, RiSkipForwardFill, RiCastLine, RiCastFill } = require('react-icons/ri');
 const { PropTypes } = require('prop-types');
@@ -125,6 +126,7 @@ export const Player = ({ url, playing, device, casting, subs, playMediaAction, p
         </button ><button title="Skip 5 seconds forward" onClick={() => { handleOnClickSeekForward(seconds, playing); }}>
             <RiSkipForwardFill size={30} />
         </button>
+        <Alert></Alert>
         <div className='section3'>
             <label>Start casting</label>
             <button title="Start casting selected media, click here every time you change media" onClick={() => { handleOnClickPlay(url, subs); playMediaAction(); getDevice(); }} >

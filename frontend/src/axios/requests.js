@@ -1,4 +1,4 @@
-import { getDeviceAction } from '../redux/actions/player';
+import { openAlert } from 'simple-react-alert';
 const axios = require("axios");
 
 export async function playMedia(payload) {
@@ -9,9 +9,11 @@ export async function playMedia(payload) {
     };
     try {
         let res = await axios(config);
+        openAlert({ message: 'Casting...', type: 'success' });
         console.log(res.status);
     } catch (error) {
         console.error(error.message);
+        openAlert({ message: error.message, type: 'error' });
     }
 }
 
@@ -22,9 +24,11 @@ export async function pauseMedia() {
     };
     try {
         let res = await axios(config);
+        openAlert({ message: 'Media paused', type: 'success' });
         console.log(res.status);
     } catch (error) {
         console.error(error.message);
+        openAlert({ message: error.message, type: 'error' });
     }
 }
 
@@ -35,9 +39,11 @@ export async function stopMedia() {
     };
     try {
         let res = await axios(config);
+        openAlert({ message: 'Media stopped', type: 'success' });
         console.log(res.status);
     } catch (error) {
         console.error(error.message);
+        openAlert({ message: error.message, type: 'error' });
     }
 }
 
@@ -48,9 +54,11 @@ export async function resumeMedia() {
     };
     try {
         let res = await axios(config);
+        openAlert({ message: 'Resuming media', type: 'success' });
         console.log(res.status);
     } catch (error) {
         console.error(error.message);
+        openAlert({ message: error.message, type: 'error' });
     }
 }
 
@@ -62,9 +70,14 @@ export async function seekSeconds(payload) {
     };
     try {
         let res = await axios(config);
+        if (payload < 0) {
+            openAlert({ message: 'Moving backwards 5 seconds...', type: 'success' });
+        }
+        openAlert({ message: 'Moving forward 5 seconds...', type: 'success' });
         console.log(res.status);
     } catch (error) {
         console.error(error.message);
+        openAlert({ message: error.message, type: 'error' });
     }
 }
 
@@ -76,9 +89,11 @@ export async function goTo(payload) {
     };
     try {
         let res = await axios(config);
+        openAlert({ message: 'Going to specified time', type: 'success' });
         console.log(res.status);
     } catch (error) {
         console.error(error.message);
+        openAlert({ message: error.message, type: 'error' });
     }
 }
 
@@ -93,6 +108,7 @@ export async function setVolume(payload) {
         console.log(res.status);
     } catch (error) {
         console.error(error.message);
+        openAlert({ message: error.message, type: 'error' });
     }
 }
 
@@ -103,9 +119,11 @@ export async function stopCast() {
     };
     try {
         let res = await axios(config);
+        openAlert({ message: 'Stopped casting from device', type: 'success' });
         console.log(res.status);
     } catch (error) {
         console.error(error.message);
+        openAlert({ message: error.message, type: 'error' });
     }
 }
 
@@ -121,6 +139,7 @@ export async function getDevice() {
         return device
     } catch (error) {
         console.error(error.message);
+        openAlert({ message: error.message, type: 'error' });
     }
 }
 
@@ -136,5 +155,6 @@ export async function getIP() {
         return ip
     } catch (error) {
         console.error(error.message);
+        openAlert({ message: error.message, type: 'error' });
     }
 }
