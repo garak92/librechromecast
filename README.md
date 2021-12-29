@@ -30,4 +30,4 @@ This is an electron app, so it should be able to run on every major PC platform.
 
 ## How is this thing made?
 
-It has a frontend made using React and Redux, and a backend API using Node (which is really just a wrapper for the Chromecast-API library). This is all packaged for desktop using Electron and Babel. FYI: the frontend runs on port 3000, and the backend uses port 5000. I am open to criticism, suggestions, and PRs. 
+It has a frontend made using React and Redux, and a backend API using Node (which is really just a wrapper for the [Chromecast-API](https://github.com/alxhotel/chromecast-api) library). This is all packaged for desktop using Electron and Babel. FYI: the frontend runs on port 3000, and the backend uses port 5000. I am open to criticism, suggestions, and PRs. 
