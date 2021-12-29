@@ -78,7 +78,7 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"\" npm run electron\"",
     "electron:start": "concurrently -k \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electronmon .\"",
     "electron:package:linux": "electron-builder -l -c.extraMetadata.main='./main.js'",
-    "electron:package:mac": "yarn build && electron-builder -m -c.extraMetadata.main=./main.js",
+    "electron:package:mac": "electron-builder -m -c.extraMetadata.main='./main.js'",
     "electron:package:win": "electron-builder -w -c.extraMetadata.main='./main.js'",
     "start": "concurrently \"npm run react-start\" \"npm run server-start\" \"wait-on http://localhost:3000 && npm run electron-dev\"",
     "react-build": "react-app-rewired build",
