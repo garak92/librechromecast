@@ -12,9 +12,10 @@ const onChangeHandler = (e) => {
 }
 
 const uploadFileHandler = (e, ip) => {
-    const file = 'http://' + ip + ':5000' + e.target.files[0].path;
-    console.log('My file is:', e.target.files[0].path);
-    return file;
+    var file = e.target.files[0].path;
+    const path = 'http://' + ip + ':5000' + file.split(":").pop().replace(/\\/g, '/'); // Convert DOS paths to Unix
+    console.log('My file is:', path);
+    return path;
 };
 
 // Component definition

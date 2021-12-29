@@ -1,10 +1,12 @@
 import { openAlert } from 'simple-react-alert';
 const axios = require("axios");
 
+const API_URL = 'http://localhost:5000' // Base URL of the Node API
+
 export async function playMedia(payload) {
     const config = {
         method: "post",
-        url: "http://localhost:5000/api/play-media",
+        url: `${API_URL}/api/play-media`,
         data: { mediaUrl: payload },
     };
     try {
@@ -20,7 +22,7 @@ export async function playMedia(payload) {
 export async function pauseMedia() {
     const config = {
         method: "post",
-        url: "http://localhost:5000/api/pause-media",
+        url: `${API_URL}/api/pause-media`,
     };
     try {
         let res = await axios(config);
@@ -35,7 +37,7 @@ export async function pauseMedia() {
 export async function stopMedia() {
     const config = {
         method: "post",
-        url: "http://localhost:5000/api/stop-media",
+        url: `${API_URL}/api/stop-media`,
     };
     try {
         let res = await axios(config);
@@ -50,7 +52,7 @@ export async function stopMedia() {
 export async function resumeMedia() {
     const config = {
         method: "post",
-        url: "http://localhost:5000/api/resume-media",
+        url: `${API_URL}/api/resume-media`,
     };
     try {
         let res = await axios(config);
@@ -65,7 +67,7 @@ export async function resumeMedia() {
 export async function seekSeconds(payload) {
     const config = {
         method: "post",
-        url: "http://localhost:5000/api/seek-seconds",
+        url: `${API_URL}/api/seek-seconds`,
         data: { seconds: payload },
     };
     try {
@@ -84,7 +86,7 @@ export async function seekSeconds(payload) {
 export async function goTo(payload) {
     const config = {
         method: "post",
-        url: "http://localhost:5000/api/go-to",
+        url: `${API_URL}/api/go-to`,
         data: { seconds: payload },
     };
     try {
@@ -100,7 +102,7 @@ export async function goTo(payload) {
 export async function setVolume(payload) {
     const config = {
         method: "post",
-        url: "http://localhost:5000/api/set-volume",
+        url: `${API_URL}/api/set-volume`,
         data: { level: payload },
     };
     try {
@@ -115,7 +117,7 @@ export async function setVolume(payload) {
 export async function stopCast() {
     const config = {
         method: "post",
-        url: "http://localhost:5000/api/stop-cast",
+        url: `${API_URL}/api/stop-cast`,
     };
     try {
         let res = await axios(config);
@@ -130,7 +132,7 @@ export async function stopCast() {
 export async function getDevice() {
     const config = {
         method: "get",
-        url: "http://localhost:5000/api/device-info",
+        url: `${API_URL}/api/device-info`,
     };
     try {
         let res = await axios(config);
@@ -146,7 +148,7 @@ export async function getDevice() {
 export async function getIP() {
     const config = {
         method: "get",
-        url: "http://localhost:5000/api/local-ip",
+        url: `${API_URL}/api/local-ip`,
     };
     try {
         let res = await axios(config);

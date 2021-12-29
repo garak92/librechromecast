@@ -1,7 +1,6 @@
 import { all, takeEvery, put, fork, call } from "redux-saga/effects";
 import { getDevice, getIP, setVolume } from "../../axios/requests";
 import { PLAY_MEDIA, GET_DEVICE, GET_IP_SUCCESS, GET_IP, SET_VOLUME } from "../constants/player";
-import { openAlert } from 'simple-react-alert';
 
 export function* getDeviceSaga() {
     yield takeEvery(PLAY_MEDIA, function* ({ payload }) {

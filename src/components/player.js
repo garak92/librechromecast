@@ -3,7 +3,6 @@ import React from 'react';
 import { useState } from 'react';
 import {
     playMediaAction,
-    seekSecondsAction,
     resumeMediaAction,
     pauseMediaAction,
     stopCastAction,
@@ -140,7 +139,7 @@ export const Player = ({ url, playing, device, casting, subs, playMediaAction, p
                 <RiCastLine size={30} />
             </button>
             <Volume></Volume>
-            <input type='time' onChange={(e) => { setTime(e.target.value); console.log('The time is', timeValue) }}></input>
+            <input type='time' title="Specify the timestamp where you want to jump to, in HH:MM" onChange={(e) => { setTime(e.target.value); console.log('The time is', timeValue) }}></input>
             <button onClick={(e) => handleOnClickGoTo(timeValue)}>GO</button>
         </div>
     </div>
