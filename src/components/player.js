@@ -108,8 +108,10 @@ const handleOnClickGoTo = (seconds) => {
     goTo(secondsFormatted);
 }
 
+// Component definition
+
 export const Player = ({ url, playing, device, casting, subs, playMediaAction, pauseMediaAction, resumeMediaAction, stopMediaAction, stopCastAction, getDevice }) => {
-    const [timeValue, setTime] = useState('00:00:00');
+    const [timeValue, setTime] = useState('00:00:00'); // State representing the timestamp of the media being casted
     return <div>
         {casting ? <h3>Casting on {device}</h3> : null}
         {casting ?
@@ -144,6 +146,8 @@ export const Player = ({ url, playing, device, casting, subs, playMediaAction, p
     </div>
 
 }
+
+// Connection with Redux store
 
 Player.propTypes = {
     media: PropTypes.array.isRequired,

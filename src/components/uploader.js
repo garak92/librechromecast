@@ -5,6 +5,8 @@ const Player = require('./player');
 const { PropTypes } = require('prop-types');
 const { connect } = require('react-redux');
 
+// Event handlers
+
 const onChangeHandler = (e) => {
     return e.target.value;
 }
@@ -14,6 +16,8 @@ const uploadFileHandler = (e, ip) => {
     console.log('My file is:', e.target.files[0].path);
     return file;
 };
+
+// Component definition
 
 export const Uploader = ({ getMediaAction, getIPAction, getSubsAction, ip }) => {
     useEffect(() => getIPAction(), [ip]); // Necessary for the chromcast to be able to see your local files
@@ -31,6 +35,8 @@ export const Uploader = ({ getMediaAction, getIPAction, getSubsAction, ip }) => 
         </section>
     </form>
 }
+
+// Connection with Redux store
 
 Uploader.propTypes = {
     getMediaAction: PropTypes.func.isRequired,

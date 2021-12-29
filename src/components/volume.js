@@ -8,9 +8,11 @@ import { setVolumeAction } from '../redux/actions/player';
 import { connect } from 'react-redux';
 import React from 'react';
 
+// Component definition
 const ContinuousSlider = ({ setVolumeAction, playing }) => {
-    const [value, setValue] = useState(0.50);
+    const [value, setValue] = useState(0.50); // State representing the volume value
 
+    // Some event handlers
     const handleChange = (e, volume) => {
         if (!playing) {
             return;
@@ -36,6 +38,7 @@ const ContinuousSlider = ({ setVolumeAction, playing }) => {
         }
     }
 
+    // Component rendering
     return (
         <Box sx={{ width: 200 }}>
             <Stack spacing={2} direction="row" sx={{ mb: 1 }} alignItems="center">
@@ -52,6 +55,8 @@ const ContinuousSlider = ({ setVolumeAction, playing }) => {
         </Box>
     );
 }
+
+// Connection with Redux store
 
 const mapStateToProps = (state) => ({
     playing: state.player.playing
