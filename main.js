@@ -3,10 +3,6 @@ const { app, BrowserWindow } = require('electron');
 const isDev = require('electron-is-dev');
 const path = require('path');
 const url = require('url');
-const nativeImage = require('electron').nativeImage;
-
-// Icon
-var image = nativeImage.createFromPath(__dirname + '/public/liberario.svg');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -22,7 +18,7 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
-        icon: image,
+        icon: __dirname + '/build/icon.png',
         webPreferences: {
             nodeIntegration: true
         }

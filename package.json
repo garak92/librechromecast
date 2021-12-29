@@ -1,7 +1,7 @@
 {
   "name": "Librechromecast",
   "author": "Elim Garak <garak92@protonmail.com>",
-  "description": "Electron FOSSS app for casting media from chromecast devices",
+  "description": "Electron FOSS app for casting media from chromecast devices",
   "version": "0.1.0",
   "private": true,
   "homepage": "./",
@@ -47,7 +47,7 @@
     "web-vitals": "^1.1.2"
   },
   "build": {
-    "appId": "com.electron-react-node",
+    "appId": "com.librechromecast",
     "files": [
       "build/**/**/*",
       "build-server/**/**/*",
@@ -62,10 +62,12 @@
     "target": "dmg"
   },
   "win": {
-    "target": "nsis"
+    "target": "nsis",
+    "icon": "build/icon.png"
   },
   "linux": {
-    "target": "appimage"
+    "target": "appimage",
+    "icon": "build/icon.png"
   },
   "scripts": {
     "build": "react-scripts build",
