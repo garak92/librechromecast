@@ -14,7 +14,7 @@ You can:
 
 ## Who is this made for?
 
-Most of Librechromcast's functionaly, such as pausing/resuming and casting Youtube videos, can be done from your cellphone already and are there merely for the sake of completeness. The application's big selling point is this: imagine you downloaded a video to your computer, and want to watch it on your TV; furthermore, you want to add subs. Currently, the only options available are propietary or too difficult for the average user (mkchromecast, for example, is a command-line tool). Librechromecast tries to fill that space.
+Most of Librechromcast's functionaly, such as pausing/resuming and casting Youtube videos, can be done from your cellphone already and are there merely included for the sake of completeness. The application's big selling point is this: imagine you downloaded a video to your computer, and want to watch it on your TV; furthermore, you want to add subs. Currently, the only options available are propietary or too difficult for the average user (mkchromecast, for example, is a command-line tool). Librechromecast tries to fill that space.
 
 ## Supported platforms
 
