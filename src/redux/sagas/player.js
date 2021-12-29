@@ -1,4 +1,4 @@
-import { all, takeEvery, put, fork, call } from "redux-saga/effects";
+import { all, takeEvery, put, fork } from "redux-saga/effects";
 import { getDevice, getIP, setVolume } from "../../axios/requests";
 import { PLAY_MEDIA, GET_DEVICE, GET_IP_SUCCESS, GET_IP, SET_VOLUME } from "../constants/player";
 
@@ -23,7 +23,7 @@ export function* setVolumeSaga() {
     yield takeEvery(SET_VOLUME, function* ({ payload }) {
         try {
 
-            const level = yield setVolume(payload)
+            yield setVolume(payload)
         } catch (err) {
             console.log(err.message);
         }

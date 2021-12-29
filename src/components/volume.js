@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Slider from '@mui/material/Slider';
@@ -18,7 +18,7 @@ const ContinuousSlider = ({ setVolumeAction, playing }) => {
             return;
         }
         const volumeNormalized = () => {
-            if (volume == 0) {
+            if (volume === 0) {
                 return 0;
             } else {
                 return volume / 100;

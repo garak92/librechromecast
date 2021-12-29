@@ -35,7 +35,7 @@ const handleOnClickPlay = (media, subs) => {
     if (!media) {
         return;
     }
-    if (subs.length == 0) {
+    if (subs.length === 0) {
         return playMedia(media);
     } else {
         const mediaObject = {

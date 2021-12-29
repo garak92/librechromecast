@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { getMediaAction, getIPAction, getSubsAction } from '../redux/actions/player';
 import React from 'react';
-const Player = require('./player');
 const { PropTypes } = require('prop-types');
 const { connect } = require('react-redux');
 
