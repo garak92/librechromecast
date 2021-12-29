@@ -55,7 +55,7 @@
       "./main.js"
     ],
     "directories": {
-      "buildResources": "assets"
+      "buildResources": "public"
     }
   },
   "mac": {
