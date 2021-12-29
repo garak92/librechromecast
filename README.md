@@ -1,10 +1,32 @@
-# Getting Started with Create React App
+# What is this?
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Librechromecast is a free (as in "freedom") and open source application for casting video files with subtitles from your PC to your TV using a chromecast device.
+Is is licensed under the AGPL, meaning it is free today and will be free forever.
 
-## Available Scripts
+## What can I do with it?
 
-In the project directory, you can run:
+You can:
+
+- Cast local videos from your PC to your TV
+- Add a subtitle file (warning: only .vtt is supported, if you have a .srt, convert it to .vtt, there are many third party tools over the net)
+- Cast Youtube videos to your TV
+- Pause/resume, move forwards/backwards, go into a specified timestamp, and stop the media
+
+## Who is this made for?
+
+Most of Librechromcast's functionaly, such as pausing/resuming and casting Youtube videos, can be done from your cellphone already and are there merely for the sake of completeness. The application's big selling point is this: imagine you downloaded a video to your computer, and want to watch it on your TV; furthermore, you want to add subs. Currently, the only options available are propietary or too difficult for the average user (mkchromecast, for example, is a command-line tool). Librechromecast tries to fill that space.
+
+## Supported platforms
+
+This is an electron app, so it should be able to run on every major PC platform. However, I only tested Linux and Windows builds. Below, I offer instructions for building on MacOS, and perhaps someone figures out how to do it on the BSD's. But I don't officialy support them, so you are on your own.
+
+## Build instructions
+
+- git clone 
+
+## How is this thing made?
+
+It has a frontend made using React and Redux, and a backend API using Node (which is really just a wrapper for the Chromecast-API library). This is all packaged for desktop using Electron and Babel. I am open to criticism, suggestions, and PRs. 
 
 ### `npm start`
 
