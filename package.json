@@ -1,0 +1,118 @@
+{
+  "name": "Librechromecast",
+  "author": "Elim Garak <garak92@protonmail.com>",
+  "description": "Electron FOSSS app for casting media from chromecast devices",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "./",
+  "main": "./main.js",
+  "dependencies": {
+    "@emotion/react": "^11.7.1",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.4",
+    "@mui/material": "^5.2.4",
+    "@testing-library/jest-dom": "^5.16.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "antd": "^4.17.4",
+    "app-module-path": "^2.2.0",
+    "axios": "^0.18.0",
+    "chromecast-api": "^0.4.0",
+    "concurrently": "^6.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "electron-devtools-installer": "^3.2.0",
+    "electron-is-dev": "^2.0.0",
+    "express": "^4.17.1",
+    "http": "^0.0.1-security",
+    "http-server": "^14.0.0",
+    "keypress": "^0.2.1",
+    "local-ipv4-address": "^0.0.2",
+    "mime": "^3.0.0",
+    "moment": "^2.29.1",
+    "nodemon": "^1.19.1",
+    "piping": "^1.0.0-rc.4",
+    "prettier": "^2.5.1",
+    "react": "^16.14.0",
+    "react-dom": "^17.0.2",
+    "react-icons": "^4.3.1",
+    "react-notifications": "^1.7.3",
+    "react-player-controls": "^1.1.0",
+    "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-saga": "^1.1.3",
+    "redux-thunk": "^2.4.1",
+    "simple-react-alert": "^1.1.2",
+    "web-vitals": "^1.1.2"
+  },
+  "build": {
+    "appId": "com.electron-react-node",
+    "files": [
+      "build/**/**/*",
+      "build-server/**/**/*",
+      "node_modules/**/*",
+      "./main.js"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "mac": {
+    "target": "dmg"
+  },
+  "win": {
+    "target": "nsis"
+  },
+  "linux": {
+    "target": "appimage"
+  },
+  "scripts": {
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "electron-pack": "electron-builder -c.extraMetadata.main='./main.js'",
+    "server": "node ../app.js",
+    "client": "BROWSER=none npm start",
+    "electron": "wait-on http://localhost:3000 && electron .",
+    "dev": "concurrently \"npm run server\" \"npm run client\"\" npm run electron\"",
+    "electron:start": "concurrently -k \"cross-env BROWSER=none yarn start\" \"wait-on http://localhost:3000 && electronmon .\"",
+    "electron:package:linux": "yarn build && electron-builder -l -c.extraMetadata.main=build/electron.js",
+    "electron:package:mac": "yarn build && electron-builder -m -c.extraMetadata.main=build/electron.js",
+    "electron:package:win": "yarn build && electron-builder -w -c.extraMetadata.main=build/electron.js",
+    "start": "concurrently \"npm run react-start\" \"npm run server-start\" \"wait-on http://localhost:3000 && npm run electron-dev\"",
+    "react-build": "react-app-rewired build",
+    "react-start": "BROWSER=none react-app-rewired start",
+    "server-build": "babel server --out-dir build-server",
+    "server-start": "nodemon --watch server --exec babel-node server/server.js",
+    "electron-dev": "node scripts/dev.js scripts/start.js",
+    "preelectron-pack": "npm run react-build && npm run server-build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": [],
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.16.5",
+    "@babel/preset-env": "^7.4.4",
+    "babel-core": "^6.26.3",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "concurrently": "^6.4.0",
+    "cross-env": "^7.0.3",
+    "customize-cra": "^0.2.12",
+    "electron": "^16.0.4",
+    "electron-builder": "^22.14.5",
+    "electron-redux-devtools": "^0.3.4",
+    "react-app-rewired": "^2.1.3",
+    "react-scripts": "3.0.1",
+    "wait-on": "^6.0.0"
+  }
+}
