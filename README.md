@@ -26,7 +26,7 @@ This is an electron app, so it should be able to run on every major PC platform.
 - cd librechromecast/
 - npm i
 - npm run build && npm run server-build
-- npm run electron::package:target_platform (options are: win, linux, mac)
+- npm run electron: package:target_platform (options are: win, linux, mac)
 
 ## How is this thing made?
 
