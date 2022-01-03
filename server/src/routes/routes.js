@@ -31,8 +31,12 @@ router.post('/play-media', async (req, res) => {
     if (!deviceName.includes('googlecast')) {
         return res.status(400).json({ msg: "A device was found, but it is not a chromecast!" })
     }
-    const play = await playMedia(device, mediaUrl);
-    return res.status(200).json({ msg: 'Playing in your device!' });
+    const play = await playMedia(device, mediaUrl).then(
+        () => {
+            return res.status(200).json({ msg: 'Playing in your device!' });
+        }
+    ).catch((err) => { return res.status(500).json({ msg: err }); });
+
 
 
 })
@@ -101,7 +105,19 @@ router.post('/set-volume', async (req, res) => {
     const device = client.devices[0];
     if (!device) {
         return res.status(400).json({ msg: "No device found!" });
-    }
+    } router.post('/set-time', async (req, res) => {
+        const { seconds } = req.body;
+        const client = req.app.get('client');
+        const device = client.devices[0];
+        if (!device) {
+            return res.status(400).json({ msg: "No device found!" });
+        }
+        if (!seconds) {
+            return res.status(400).json({ msg: "Second unspecified!" });
+        }
+        setTime(device, seconds);
+        return res.status(200).json({ msg: "Going into specified time!" });
+    })
     if (!level) {
         return res.status(400).json({ msg: "Volume level unspecified!" });
     }
@@ -110,12 +126,17 @@ router.post('/set-volume', async (req, res) => {
 })
 
 router.get('/device-info', async (req, res) => {
-    const client = req.app.get('client');
-    const device = client.devices[0];
-    if (!device) {
-        return res.status(400).json({ msg: "No device found!" });
+    try {
+        const client = req.app.get('client');
+        const device = await client.devices[0];
+        if (!device) {
+            return res.status(400).json({ msg: "No device found!" });
+        }
+        return res.status(200).json({ device });
+    } catch (error) {
+        return res.status(500).json(error.message);
     }
-    return res.status(200).json({ device });
+
 })
 
 router.get('/client-info', async (req, res) => {

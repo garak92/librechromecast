@@ -1,7 +1,10 @@
 // This file contains all of the basic functions that are then called on the endpoints
 
 function stopCast(device) {
-
+    if (!device) {
+        console.error('No device found')
+        return;
+    }
     try {
         device.close(() => console.error('Stopped casting'));
     } catch (error) {
@@ -47,6 +50,10 @@ function resumeMedia(device) {
 }
 
 function stopMedia(device) {
+    if (!device) {
+        console.error('No device found')
+        return;
+    }
     try {
         device.stop(() => console.error('Stopped media'));
     } catch (error) {

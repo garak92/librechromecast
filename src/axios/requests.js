@@ -10,8 +10,9 @@ export async function playMedia(payload) {
         data: { mediaUrl: payload },
     };
     try {
+        openAlert({ message: 'Trying to cast to your device...', type: 'info' });
         let res = await axios(config);
-        openAlert({ message: 'Casting...', type: 'success' });
+        openAlert({ message: 'Casting to your device!', type: 'success' });
         console.log(res.status);
     } catch (error) {
         console.error(error.message);

@@ -12,7 +12,7 @@ import {
 } from '../redux/actions/player';
 import Volume from './volume';
 import Alert from 'simple-react-alert';
-const { button } = require('react-player-controls')
+import { openAlert } from 'simple-react-alert';
 const { RiPlayFill, RiPauseCircleFill, RiStopCircleFill, RiSkipBackFill, RiSkipForwardFill, RiCastLine, RiCastFill } = require('react-icons/ri');
 const { PropTypes } = require('prop-types');
 const { connect } = require('react-redux');
@@ -31,47 +31,13 @@ const seconds = 5;
 
 // Event handlers
 
-const handleOnClickPlay = (media, subs) => {
-    if (!media) {
-        return;
-    }
-    if (subs.length === 0) {
-        return playMedia(media);
-    } else {
-        const mediaObject = {
-            url: media,
-            subtitles: [
-                {
-                    language: '',
-                    url: subs,
-                    name: '',
-                }
-            ],
-            cover: {
-                title: 'Playing your media...',
-                url: ''
-            },
-            subtitles_style: {
-                backgroundColor: '#FFFFFF00',
-                foregroundColor: '#FFFFFFFF',
-                edgeType: 'OUTLINE',
-                edgeColor: '#000000FF',
-                fontScale: 1.2,
-                fontStyle: 'BOLD',
-                fontFamily: 'Droid Sans',
-                fontGenericFamily: 'SANS_SERIF',
-            }
-        }
-        return playMedia(mediaObject);
-    }
-}
-
 const handleOnClickPause = () => {
     pauseMedia();
 }
 
 const handleOnClickStop = (casting) => {
     if (!casting) {
+        openAlert({ message: 'Not casting anything, nothing to do', type: 'info' });
         return;
     }
     stopMedia();
@@ -79,6 +45,7 @@ const handleOnClickStop = (casting) => {
 
 const handleOnClickStopCast = (casting) => {
     if (!casting) {
+        openAlert({ message: 'Not casting anything, nothing to do', type: 'info' });
         return;
     }
     stopCast();
@@ -111,6 +78,41 @@ const handleOnClickGoTo = (seconds) => {
 
 export const Player = ({ url, playing, device, casting, subs, playMediaAction, pauseMediaAction, resumeMediaAction, stopMediaAction, stopCastAction, getDevice }) => {
     const [timeValue, setTime] = useState('00:00:00'); // State representing the timestamp of the media being casted
+    const handleOnClickPlay = (media, subs) => {
+        if (!media || media.length === 0) {
+            openAlert({ message: 'No media selected, nothing to do', type: 'info' });
+            return;
+        }
+        if (subs.length === 0) {
+            return playMediaAction(media);
+        } else {
+            const mediaObject = {
+                url: media,
+                subtitles: [
+                    {
+                        language: '',
+                        url: subs,
+                        name: '',
+                    }
+                ],
+                cover: {
+                    title: 'Playing your media...',
+                    url: ''
+                },
+                subtitles_style: {
+                    backgroundColor: '#FFFFFF00',
+                    foregroundColor: '#FFFFFFFF',
+                    edgeType: 'OUTLINE',
+                    edgeColor: '#000000FF',
+                    fontScale: 1.2,
+                    fontStyle: 'BOLD',
+                    fontFamily: 'Droid Sans',
+                    fontGenericFamily: 'SANS_SERIF',
+                }
+            }
+            return playMediaAction(mediaObject);
+        }
+    }
     return <div>
         {casting ? <h3>Casting on {device}</h3> : null}
         {casting ?
@@ -131,7 +133,7 @@ export const Player = ({ url, playing, device, casting, subs, playMediaAction, p
         <Alert></Alert>
         <div className='section3'>
             <label>Start casting</label>
-            <button title="Start casting selected media, click here every time you change media" onClick={() => { handleOnClickPlay(url, subs); playMediaAction(); getDevice(); }} >
+            <button title="Start casting selected media, click here every time you change media" onClick={() => { handleOnClickPlay(url, subs); getDevice(); }} >
                 <RiCastFill size={30} />
             </button>
             <label>Stop casting</label>
@@ -165,7 +167,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        playMediaAction: () => dispatch(playMediaAction()),
+        playMediaAction: (payload) => dispatch(playMediaAction(payload)),
         pauseMediaAction: () => dispatch(pauseMediaAction()),
         resumeMediaAction: () => dispatch(resumeMediaAction()),
         stopMediaAction: () => dispatch(stopMediaAction()),

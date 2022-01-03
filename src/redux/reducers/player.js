@@ -10,7 +10,8 @@ import {
     GET_IP,
     GET_IP_SUCCESS,
     GET_SUBS,
-    GO_TO
+    GO_TO,
+    PLAY_MEDIA_SUCCESS
 } from '../constants/player';
 
 const initialState = {
@@ -31,6 +32,10 @@ export default function (state = initialState, action) {
                 media: payload,
             }
         case PLAY_MEDIA:
+            return {
+                ...state
+            }
+        case PLAY_MEDIA_SUCCESS:
             return {
                 ...state,
                 playing: true,

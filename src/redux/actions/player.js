@@ -42,9 +42,10 @@ export const setVolumeAction = (payload) => {
     }
 }
 
-export const playMediaAction = () => {
+export const playMediaAction = (payload) => {
     return {
-        type: PLAY_MEDIA
+        type: PLAY_MEDIA,
+        payload: payload
     }
 }
 
