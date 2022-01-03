@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getMediaAction, getIPAction, getSubsAction } from '../redux/actions/player';
 import React from 'react';
 const { PropTypes } = require('prop-types');
@@ -21,6 +21,7 @@ const uploadFileHandler = (e, ip) => {
 
 export const Uploader = ({ getMediaAction, getIPAction, getSubsAction, ip }) => {
     useEffect(() => getIPAction(), [ip]); // Necessary for the chromcast to be able to see your local files
+    const [valid, setValid] = useState('');
     return <form encType="multipart/form-data">
         <section className='section2'>
             <label htmlFor="localfiles" >Select a local video file </label>
@@ -30,8 +31,16 @@ export const Uploader = ({ getMediaAction, getIPAction, getSubsAction, ip }) => 
             <h2>Other options</h2>
             <label htmlFor="subs">Add a subtitle file </label>
             <input id="subs" type="file" onChange={(e) => { getSubsAction(uploadFileHandler(e, ip)) }} />
-            <label htmlFor="files">Input a video url </label>
-            <input id="files" type="url" onChange={(e) => { getMediaAction(onChangeHandler(e)) }} />
+            <label htmlFor="files">Input a valid Youtube url</label>
+            <label htmlFor="files" className='Warning-label'> {valid ? valid : null}</label>
+            <input id="files" type="url" onChange={(e) => {
+
+                if (!e.target.value.match(/http(?:s?):\/\/(?:www\.)?youtu(?:be\.com\/watch\?v=|\.be\/)([\w\-\_]*)(&(amp;)?‌​[\w\?‌​=]*)?/gm)) { setValid('Not a valid Youtube url!') }
+                else {
+                    setValid('Url is ok!')
+                    getMediaAction(onChangeHandler(e))
+                }
+            }} />
         </section>
     </form>
 }

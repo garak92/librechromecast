@@ -42,6 +42,10 @@ input {
   left: 40px;
 }
 
+.Warning-label {
+  font: 1rem "Fira Sans", sans-serif;
+}
+
 .section2 {
   position: relative;
   top: 5px;

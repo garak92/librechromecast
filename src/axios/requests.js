@@ -10,13 +10,12 @@ export async function playMedia(payload) {
         data: { mediaUrl: payload },
     };
     try {
-        openAlert({ message: 'Trying to cast to your device...', type: 'info' });
+        openAlert({ message: 'Trying to cast to your device. Patience, please...', type: 'info', duration: 4000 });
         let res = await axios(config);
         openAlert({ message: 'Casting to your device!', type: 'success' });
         console.log(res.status);
     } catch (error) {
-        console.error(error.message);
-        openAlert({ message: error.message, type: 'error' });
+        openAlert({ message: error.response.data, type: 'error' });
     }
 }
 
@@ -30,8 +29,8 @@ export async function pauseMedia() {
         openAlert({ message: 'Media paused', type: 'success' });
         console.log(res.status);
     } catch (error) {
-        console.error(error.message);
-        openAlert({ message: error.message, type: 'error' });
+        console.error(error.response.data);
+        openAlert({ message: error.response.data, type: 'error' });
     }
 }
 
@@ -45,8 +44,8 @@ export async function stopMedia() {
         openAlert({ message: 'Media stopped', type: 'success' });
         console.log(res.status);
     } catch (error) {
-        console.error(error.message);
-        openAlert({ message: error.message, type: 'error' });
+        console.error(error.response.data);
+        openAlert({ message: error.response.data, type: 'error' });
     }
 }
 
@@ -60,8 +59,8 @@ export async function resumeMedia() {
         openAlert({ message: 'Resuming media', type: 'success' });
         console.log(res.status);
     } catch (error) {
-        console.error(error.message);
-        openAlert({ message: error.message, type: 'error' });
+        console.error(error.response.data);
+        openAlert({ message: error.response.data, type: 'error' });
     }
 }
 
@@ -79,8 +78,8 @@ export async function seekSeconds(payload) {
         openAlert({ message: 'Moving forward 5 seconds...', type: 'success' });
         console.log(res.status);
     } catch (error) {
-        console.error(error.message);
-        openAlert({ message: error.message, type: 'error' });
+        console.error(error.response.data);
+        openAlert({ message: error.response.data, type: 'error' });
     }
 }
 
@@ -95,8 +94,8 @@ export async function goTo(payload) {
         openAlert({ message: 'Going to specified time', type: 'success' });
         console.log(res.status);
     } catch (error) {
-        console.error(error.message);
-        openAlert({ message: error.message, type: 'error' });
+        console.error(error.response.data);
+        openAlert({ message: error.response.data, type: 'error' });
     }
 }
 
@@ -110,8 +109,8 @@ export async function setVolume(payload) {
         let res = await axios(config);
         console.log(res.status);
     } catch (error) {
-        console.error(error.message);
-        openAlert({ message: error.message, type: 'error' });
+        console.error(error.response.data);
+        openAlert({ message: error.response.data, type: 'error' });
     }
 }
 
@@ -125,8 +124,8 @@ export async function stopCast() {
         openAlert({ message: 'Stopped casting from device', type: 'success' });
         console.log(res.status);
     } catch (error) {
-        console.error(error.message);
-        openAlert({ message: error.message, type: 'error' });
+        console.error(error.response.data);
+        openAlert({ message: error.response.data, type: 'error' });
     }
 }
 
@@ -141,8 +140,8 @@ export async function getDevice() {
         console.log('Device name', device);
         return device
     } catch (error) {
-        console.error(error.message);
-        openAlert({ message: error.message, type: 'error' });
+        console.error(error.response.data);
+        openAlert({ message: error.response.data, type: 'error' });
     }
 }
 
@@ -157,7 +156,7 @@ export async function getIP() {
         console.log('Local ip', ip);
         return ip
     } catch (error) {
-        console.error(error.message);
-        openAlert({ message: error.message, type: 'error' });
+        console.error(error.response.data);
+        openAlert({ message: error.response.data, type: 'error' });
     }
 }
