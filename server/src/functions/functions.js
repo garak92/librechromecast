@@ -10,15 +10,22 @@ function stopCast(device) {
 
 }
 
-function playMedia(device, media) {
-    try {
-        device.play(media, function (err) {
-            if (!err) console.error('Playing in your chromecast')
-        })
-    } catch (error) {
-        console.error(error);
-    }
-
+async function playMedia(device, media) {
+    return new Promise((resolve, reject) => {
+        try {
+            device.play(media, function (err) {
+                if (!err) {
+                    resolve(true);
+                }
+                else {
+                    reject();
+                }
+            })
+        } catch (error) {
+            reject();
+            console.error(error);
+        }
+    })
 }
 
 function pauseMedia(device) {

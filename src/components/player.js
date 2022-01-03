@@ -71,28 +71,28 @@ const handleOnClickPause = () => {
 }
 
 const handleOnClickStop = (casting) => {
-    if (casting) {
+    if (!casting) {
         return;
     }
     stopMedia();
 }
 
 const handleOnClickStopCast = (casting) => {
-    if (casting) {
+    if (!casting) {
         return;
     }
     stopCast();
 }
 
 const handleOnClickSeekForward = (seconds, playing) => {
-    if (playing) {
+    if (!playing) {
         return;
     }
     seekSeconds(seconds);
 }
 
 const handleOnClickSeekBackward = (seconds, playing) => {
-    if (playing) {
+    if (!playing) {
         return;
     }
     seekSeconds(seconds * -1);

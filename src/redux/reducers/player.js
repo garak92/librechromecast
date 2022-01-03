@@ -44,8 +44,7 @@ export default function (state = initialState, action) {
         case STOP_MEDIA:
             return {
                 ...state,
-                playing: false,
-                casting: false
+                playing: false
             }
         case RESUME_MEDIA:
             return {
