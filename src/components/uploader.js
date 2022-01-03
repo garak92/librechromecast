@@ -29,8 +29,8 @@ export const Uploader = ({ getMediaAction, getIPAction, getSubsAction, ip }) => 
         </section>
         <section className='section1'>
             <h2>Other options</h2>
-            <label htmlFor="subs">Add a subtitle file </label>
-            <input id="subs" type="file" onChange={(e) => { getSubsAction(uploadFileHandler(e, ip)) }} />
+            <label htmlFor="subs">Add a subtitle file (only .vtt format is supported) </label>
+            <input id="subs" type="file" accept=".vtt" onChange={(e) => { getSubsAction(uploadFileHandler(e, ip)) }} />
             <label htmlFor="files">Input a valid Youtube url</label>
             <label htmlFor="files" className='Warning-label'> {valid ? valid : null}</label>
             <input id="files" type="url" onChange={(e) => {
