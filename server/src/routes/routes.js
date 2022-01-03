@@ -3,7 +3,7 @@ import localIpV4Address from "local-ipv4-address";
 
 const router = express.Router();
 
-const { playMedia, pauseMedia, resumeMedia, stopMedia, stopCast, seek, setVolume, setTime, goTo } = require('../functions/functions');
+const { playMedia, pauseMedia, resumeMedia, stopMedia, stopCast, seek, setVolume, goTo } = require('../functions/functions');
 
 
 router.post('/stop-cast', async (req, res) => {
@@ -107,20 +107,6 @@ router.post('/set-volume', async (req, res) => {
     }
     setVolume(device, level);
     return res.status(200).json({ msg: "Changing volume!" });
-})
-
-router.post('/set-time', async (req, res) => {
-    const { seconds } = req.body;
-    const client = req.app.get('client');
-    const device = client.devices[0];
-    if (!device) {
-        return res.status(400).json({ msg: "No device found!" });
-    }
-    if (!seconds) {
-        return res.status(400).json({ msg: "Second unspecified!" });
-    }
-    setTime(device, seconds);
-    return res.status(200).json({ msg: "Going into specified time!" });
 })
 
 router.get('/device-info', async (req, res) => {
