@@ -134,7 +134,7 @@ router.get('/device-info', async (req, res) => {
         }
         return res.status(200).json({ device });
     } catch (error) {
-        return res.status(500).json(error.message);
+        return res.status(500).json({ msg: error.message });
     }
 
 })
@@ -154,7 +154,7 @@ router.get('/local-ip', async (req, res) => {
         });
         return res.status(200).json({ local_ip: ip });
     } catch (error) {
-        return res.status(400).json({ error: error.message });
+        return res.status(400).json({ msg: error.message });
     }
 })
 
