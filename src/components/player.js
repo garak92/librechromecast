@@ -98,9 +98,9 @@ export const Player = ({
     stopCastAction,
     getDevice,
 }) => {
-    const [timeValue, setTime] = useState("00:00:00");
+    const [timeValue, setTime] = useState("00:00:00"); // State representing the timestamp of the media being casted
 
-
+    // This particular event is handled here, in order to be able to access props from the redux store
     const handleOnClickPlay = (media, subs) => {
         if (!media || media.length === 0) {
             openAlert({ message: "No media selected, nothing to do", type: "info" });
@@ -141,6 +141,7 @@ export const Player = ({
         }
     };
 
+    // Rendering of component
     return (
         <div>
             {casting ? <h3>Casting on {device}</h3> : null}
