@@ -2,7 +2,7 @@
   "name": "Librechromecast",
   "author": "Elim Garak <garak92@protonmail.com>",
   "description": "Electron FOSS app for casting media from chromecast devices",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "homepage": "./",
   "main": "./main.js",
